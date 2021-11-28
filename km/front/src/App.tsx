@@ -3,18 +3,13 @@ import io from "socket.io-client";
 
 const pc_config = {
   iceServers: [
-    // {
-    //   urls: 'stun:[STUN_IP]:[PORT]',
-    //   'credentials': '[YOR CREDENTIALS]',
-    //   'username': '[USERNAME]'
-    // },
     {
       urls: "stun:stun.l.google.com:19302",
     },
   ],
 };
 
-const SOCKET_SERVER_URL = "https://localhost:8080";
+const SOCKET_SERVER_URL = "http://localhost:8080";
 
 const App = () => {
   const socketRef = useRef<SocketIOClient.Socket>();
@@ -45,7 +40,7 @@ const App = () => {
         console.log(e);
       };
       pcRef.current.ontrack = (ev) => {
-        console.log("add remotetrack success");
+        console.log("add remote track success");
         if (remoteVideoRef.current) {
           remoteVideoRef.current.srcObject = ev.streams[0];
         }
